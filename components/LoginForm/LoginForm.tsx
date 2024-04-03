@@ -2,7 +2,8 @@ import { ErrorMessage } from "@hookform/error-message";
 import useLoginForm from "./useLoginForm";
 
 export const LoginForm = () => {
-  const { errors, handleSubmit, onSubmit, register } = useLoginForm();
+  const { isLoading, errors, handleSubmit, onSubmit, register } =
+    useLoginForm();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
       <div className="form-control">
@@ -10,6 +11,7 @@ export const LoginForm = () => {
           <span className="label-text">Login</span>
         </label>
         <input
+          disabled={isLoading}
           {...register("login", {
             required: {
               value: true,
@@ -33,6 +35,7 @@ export const LoginForm = () => {
           <span className="label-text">Password</span>
         </label>
         <input
+          disabled={isLoading}
           {...register("password", {
             required: {
               value: true,
@@ -55,7 +58,10 @@ export const LoginForm = () => {
         />
       </div>
       <div className="form-control mt-6">
-        <button className="btn btn-primary">Login</button>
+        <button disabled={isLoading} className="btn btn-primary">
+          {isLoading && <span className="loading loading-spinner"></span>}
+          Login
+        </button>
       </div>
       {errors["login"] && (
         <div className="toast">
