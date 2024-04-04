@@ -1,4 +1,4 @@
-import { loginType } from "@/types";
+import { loginType, registerType } from "@/types";
 import axios from "axios";
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -10,5 +10,10 @@ const instance = axios.create({
 
 export const login = async (data: loginType) => {
   const response = await instance.post("/api/user/login", data);
+  return response;
+};
+
+export const signup = async (data: registerType) => {
+  const response = await instance.post("/api/user/signup", data);
   return response;
 };

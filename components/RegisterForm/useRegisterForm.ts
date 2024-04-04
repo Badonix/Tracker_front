@@ -1,7 +1,8 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { RegisterInputs } from "./types";
-import { login } from "@/services";
+import { signup } from "@/services";
 import { useState } from "react";
+import { useWatch } from "react-hook-form";
 
 export const useRegisterForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -10,28 +11,43 @@ export const useRegisterForm = () => {
     handleSubmit,
     setError,
     formState: { errors },
+    control,
   } = useForm<RegisterInputs>();
 
+  const { password: passwordValue } = useWatch({ control });
   const onSubmit: SubmitHandler<RegisterInputs> = async (
-    data: RegisterInputs
+    data: RegisterInputs,
   ) => {
     setIsLoading(true);
     console.log(data);
     try {
-      // let response = await login(data);
-      // console.log(response);
+      let response = await signup(data);
+      console.log(response);
     } catch (e: any) {
-      e.response.status == 401
-        ? setError("password", { type: "wrong", message: "Wrong Credentials" })
-        : setError("password", {
-            type: "unknown",
-            message: "Unkown error occured",
-          });
+      if (e?.response?.data?.error == "Email already in use") {
+        setError("email", {
+          type: "Duplicate",
+          message: "Email already in use",
+        });
+      } else if (e?.response?.data?.error == "Username exists") {
+        setError("username", {
+          type: "Duplicate",
+          message: "Username already in use",
+        });
+      }
+      console.log(e);
     }
     setIsLoading(false);
   };
 
-  return { register, handleSubmit, onSubmit, errors, isLoading };
+  return {
+    register,
+    handleSubmit,
+    onSubmit,
+    errors,
+    isLoading,
+    passwordValue,
+  };
 };
 
 export default useRegisterForm;

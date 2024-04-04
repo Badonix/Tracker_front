@@ -3,7 +3,7 @@ import useRegisterForm from "./useRegisterForm";
 import { RegisterInputs } from "./types";
 
 export const RegisterForm = () => {
-  const { isLoading, errors, handleSubmit, onSubmit, register } =
+  const { passwordValue, isLoading, errors, handleSubmit, onSubmit, register } =
     useRegisterForm();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="card-body">
@@ -73,12 +73,18 @@ export const RegisterForm = () => {
               message: "Password is required",
             },
             minLength: {
-              value: 3,
-              message: "Minimum of 3 characters",
+              value: 6,
+              message: "Minimum of 6 characters",
             },
             maxLength: {
               value: 25,
               message: "Maximum of 25 characters",
+            },
+            validate: (val) => {
+              let containsNumber = /\d/.test(val);
+              if (!containsNumber) {
+                return "At least one number";
+              }
             },
           })}
           type="password"
@@ -106,6 +112,11 @@ export const RegisterForm = () => {
             maxLength: {
               value: 25,
               message: "Maximum of 25 characters",
+            },
+            validate: (val) => {
+              if (passwordValue != val) {
+                return "Passwords do not match";
+              }
             },
           })}
           type="password"
@@ -138,7 +149,7 @@ export const RegisterForm = () => {
                           />
                         );
                       }
-                    }
+                    },
                   )}
                 </div>
               </div>
