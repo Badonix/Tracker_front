@@ -17,3 +17,12 @@ export const signup = async (data: registerType) => {
   const response = await instance.post("/api/user/signup", data);
   return response;
 };
+
+export const me = async () => {
+  const response = await instance.get("/api/user/me", {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+  return response;
+};
