@@ -1,11 +1,13 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { RegisterInputs } from "./types";
 import { signup } from "@/services";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { useWatch } from "react-hook-form";
 
 export const useRegisterForm = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -22,7 +24,8 @@ export const useRegisterForm = () => {
     console.log(data);
     try {
       let response = await signup(data);
-      console.log(response);
+      localStorage.setItem("token", response?.data?.token);
+      router.push("/dashboard");
     } catch (e: any) {
       if (e?.response?.data?.error == "Email already in use") {
         setError("email", {
