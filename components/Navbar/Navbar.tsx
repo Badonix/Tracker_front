@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { useNavbar } from "./useNavbar";
 
 export const Navbar = () => {
+  const { isLoggedIn, handleLogout } = useNavbar();
   return (
     <nav className="fixed w-full top-0 left-0 shadow-lg navbar bg-base-100">
       <div className="navbar-start">
@@ -58,12 +60,20 @@ export const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end gap-3">
-        <Link href="/register" className="btn">
-          Register
-        </Link>
-        <Link href="/login" className="btn">
-          Login
-        </Link>
+        {isLoggedIn ? (
+          <button onClick={handleLogout} className="btn mr-4">
+            Log Out
+          </button>
+        ) : (
+          <>
+            <Link href="/register" className="btn">
+              Register
+            </Link>
+            <Link href="/login" className="btn">
+              Login
+            </Link>
+          </>
+        )}
       </div>
     </nav>
   );

@@ -1,27 +1,25 @@
-import { me } from "@/services";
-import { UserType } from "@/types";
-import { useRouter } from "next/router";
+import { getPages } from "@/services";
+import { PageType } from "@/types";
 import { useEffect, useState } from "react";
 
 export const useDashboard = () => {
-  const [user, setUser] = useState<UserType | null>();
-  const [loading, setLoading] = useState(true);
-  const router = useRouter();
-  const fetchUser = async () => {
-    setLoading(true);
+  const [pagesLoading, setPagesLoading] = useState(true);
+  const [pages, setPages] = useState<PageType[] | null>();
+  const fetchPages = async () => {
     try {
-      const user = await me();
-      setUser(user.data.userFiltered);
-      setLoading(false);
+      let pages = await getPages();
+      setPages(pages.data.pages);
+      setPagesLoading(false);
     } catch (e) {
-      router.push("/login");
       console.log(e);
+      setPagesLoading(false);
     }
   };
+  console.log(pages);
   useEffect(() => {
-    fetchUser();
+    fetchPages();
   }, []);
-  return { user, loading };
+  return { pages, pagesLoading };
 };
 
 export default useDashboard;

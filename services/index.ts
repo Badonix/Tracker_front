@@ -26,3 +26,12 @@ export const me = async () => {
   });
   return response;
 };
+
+export const getPages = async () => {
+  const response = await instance.get("/api/page", {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+  return response;
+};
