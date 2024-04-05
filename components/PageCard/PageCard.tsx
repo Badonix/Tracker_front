@@ -1,4 +1,5 @@
 import { PageType } from "@/types";
+import Link from "next/link";
 
 export const PageCard = ({ page }: { page: PageType }) => {
   return (
@@ -7,7 +8,9 @@ export const PageCard = ({ page }: { page: PageType }) => {
         <h2 className="card-title">{page.domain}</h2>
         <p>{page.apiKey.slice(0, 8)}********</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">View</button>
+          <Link href={`/pages/${page._id}`} className="btn btn-primary">
+            View
+          </Link>
           <button className="btn btn-ghost">Delete</button>
         </div>
       </div>
