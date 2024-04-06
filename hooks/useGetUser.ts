@@ -13,7 +13,7 @@ export const useGetUser = () => {
       const user = await me();
       setUser(user.data.userFiltered);
       setLoading(false);
-      localStorage.setItem("user", user.data.userFiltered);
+      localStorage.setItem("user", JSON.stringify(user.data.userFiltered));
     } catch (e) {
       router.push("/login");
       localStorage.clear();

@@ -7,6 +7,17 @@ const instance = axios.create({
     Accept: "application/json",
   },
 });
+instance.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function (error) {
+    if (error.response && error.response.status === 401) {
+      window.location.href = "/login";
+    }
+    return Promise.reject(error);
+  },
+);
 
 export const login = async (data: loginType) => {
   const response = await instance.post("/api/user/login", data);
@@ -37,7 +48,7 @@ export const getPages = async () => {
 };
 
 export const getSinglePage = async (data: getSinglePageType) => {
-  const response = await instance.get("/api/page/single", {
+  const response = await instance.post("/api/page/single", data, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },

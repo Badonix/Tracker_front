@@ -16,9 +16,9 @@ export const dashboard = () => {
           <h2 className="text-xl">Your Pages</h2>
           <button className="btn btn-outline btn-primary">Add Page</button>
         </div>
-        <div className="flex items-center gap-8">
+        <div className="flex flex-wrap items-center gap-8">
           {pagesLoading ? (
-            <div className="flex items-center gap-8">
+            <div className="flex flex-wrap items-center gap-8">
               <PageSkeleton />
               <PageSkeleton />
               <PageSkeleton />

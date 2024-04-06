@@ -1,3 +1,3 @@
 export type getSinglePageType = {
-  domain: string;
+  pageId: string;
 };
