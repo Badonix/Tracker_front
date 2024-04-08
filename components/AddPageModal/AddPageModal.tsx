@@ -1,18 +1,24 @@
 import { ErrorMessage } from "@hookform/error-message";
 import { useAddPageModal } from "./useAddPageModal";
+import { useClickOutside } from "@/hooks";
+import { useRef } from "react";
 
 export const AddPageModal = ({
   setModal,
 }: {
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const modalRef = useRef(null);
   const { register, errors, onSubmit, handleSubmit } = useAddPageModal();
+  useClickOutside(modalRef, () => {
+    setModal(false);
+  });
   return (
-    <div
-      onClick={() => setModal(false)}
-      className="h-screen z-30 w-screen fixed backdrop-blur-md top-0 left-0 flex items-center justify-center"
-    >
-      <div className="py-4 bg-background rounded-xl shadow-lg w-full max-w-lg">
+    <div className="h-screen z-30 w-screen fixed backdrop-blur-md top-0 left-0 flex items-center justify-center">
+      <div
+        ref={modalRef}
+        className="py-4 bg-background rounded-xl shadow-lg w-full max-w-lg"
+      >
         <h3 className="md:ml-8">Add Page</h3>
         <form className="card-body py-2" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-control">
