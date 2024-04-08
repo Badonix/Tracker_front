@@ -4,7 +4,6 @@ import { useGetSinglePage } from "@/hooks";
 
 export const singlePage = () => {
   const { pageData, loading } = useGetSinglePage();
-  console.log(pageData);
   return (
     <>
       <Navbar />

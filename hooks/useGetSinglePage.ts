@@ -10,7 +10,6 @@ export const useGetSinglePage = () => {
   const fetch = async () => {
     if (id) {
       const response = await getSinglePage({ pageId: String(id) });
-      console.log(response);
       setPageData(response.data.page);
       setLoading(false);
     }

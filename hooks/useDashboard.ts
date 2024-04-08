@@ -16,7 +16,6 @@ export const useDashboard = () => {
       setPagesLoading(false);
     }
   };
-  console.log(pages);
   useEffect(() => {
     fetchPages();
   }, []);

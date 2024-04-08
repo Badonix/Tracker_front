@@ -8,7 +8,6 @@ import { PageType } from "@/types";
 export const dashboard = () => {
   const { user } = useGetUser();
   const { addModal, setAddModal, pages, pagesLoading } = useDashboard();
-  console.log(user);
   return (
     <>
       <Navbar />
@@ -34,7 +33,7 @@ export const dashboard = () => {
             </div>
           ) : (
             pages?.map((page: PageType) => {
-              return <PageCard page={page} />;
+              return <PageCard key={page._id} page={page} />;
             })
           )}
         </div>
