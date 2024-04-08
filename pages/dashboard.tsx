@@ -1,20 +1,27 @@
 import { Navbar, PageCard } from "@/components";
+import { AddPageModal } from "@/components/AddPageModal";
 import { PageSkeleton } from "@/components/PageSkeleton";
 import { useDashboard } from "@/hooks";
 import useGetUser from "@/hooks/useGetUser";
 import { PageType } from "@/types";
 
 export const dashboard = () => {
-  const { loading: userLoading, user } = useGetUser();
-  const { pages, pagesLoading } = useDashboard();
+  const { user } = useGetUser();
+  const { addModal, setAddModal, pages, pagesLoading } = useDashboard();
   console.log(user);
   return (
     <>
       <Navbar />
       <div className="py-24 px-8 min-h-screen w-full bg-base-200">
+        {addModal && <AddPageModal setModal={setAddModal} />}
         <div className="w-full mb-4 flex items-center justify-between">
           <h2 className="text-xl">Your Pages</h2>
-          <button className="btn btn-outline btn-primary">Add Page</button>
+          <button
+            onClick={() => setAddModal(true)}
+            className="btn btn-outline btn-primary"
+          >
+            Add Page
+          </button>
         </div>
         <div className="flex flex-wrap items-center gap-8">
           {pagesLoading ? (

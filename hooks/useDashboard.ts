@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 export const useDashboard = () => {
   const [pagesLoading, setPagesLoading] = useState(true);
   const [pages, setPages] = useState<PageType[] | null>();
+  const [addModal, setAddModal] = useState(false);
   const fetchPages = async () => {
     try {
       let pages = await getPages();
@@ -19,7 +20,7 @@ export const useDashboard = () => {
   useEffect(() => {
     fetchPages();
   }, []);
-  return { pages, pagesLoading };
+  return { pages, pagesLoading, addModal, setAddModal };
 };
 
 export default useDashboard;
