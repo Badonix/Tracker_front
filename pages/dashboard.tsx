@@ -1,6 +1,4 @@
-import { Navbar, PageCard } from "@/components";
-import { AddPageModal } from "@/components/AddPageModal";
-import { PageSkeleton } from "@/components/PageSkeleton";
+import { AddPageModal, PageSkeleton, Navbar, PageCard } from "@/components";
 import { useDashboard } from "@/hooks";
 import useGetUser from "@/hooks/useGetUser";
 import { PageType } from "@/types";

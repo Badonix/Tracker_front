@@ -1,5 +1,4 @@
-import { LoginForm, Navbar } from "@/components";
-import { RegisterForm } from "@/components/RegisterForm";
+import { RegisterForm, Navbar } from "@/components";
 
 export const register = () => {
   return (

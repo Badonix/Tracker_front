@@ -1,5 +1,4 @@
 import { Navbar } from "@/components";
-import { Table } from "@/components/Table";
 import { useGetSinglePage } from "@/hooks";
 
 export const singlePage = () => {
@@ -16,7 +15,7 @@ export const singlePage = () => {
               <h2>{pageData?.domain}</h2>
               <h3>{pageData?.apiKey}</h3>
             </div>
-            <Table />
+            <h2>No data for now</h2>
           </>
         )}
       </section>
