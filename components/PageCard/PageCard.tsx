@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePageCard } from "./usePageCard";
 
 export const PageCard = ({ page }: { page: PageType }) => {
-  const { loading, handleDelete } = usePageCard();
+  const { loading, confirm, setConfirm, handleDelete } = usePageCard();
   return (
     <div className="card w-96 bg-neutral text-neutral-content">
       <div className="card-body items-center text-center">
@@ -13,18 +13,25 @@ export const PageCard = ({ page }: { page: PageType }) => {
           <Link href={`/pages/${page._id}`} className="btn btn-primary">
             View
           </Link>
-          <button
-            onClick={() => {
-              handleDelete(page._id);
-            }}
-            className="btn btn-ghost"
-          >
-            {loading ? (
-              <span className="loading loading-spiner"></span>
-            ) : (
-              "Delete"
-            )}
-          </button>
+          {!confirm && (
+            <button onClick={() => setConfirm(true)} className="btn btn-ghost">
+              Delete
+            </button>
+          )}
+          {confirm && (
+            <button
+              className="btn btn-error"
+              onClick={() => {
+                handleDelete(page._id);
+              }}
+            >
+              {loading ? (
+                <span className="loading loading-spinner"></span>
+              ) : (
+                "Confirm"
+              )}
+            </button>
+          )}
         </div>
       </div>
     </div>

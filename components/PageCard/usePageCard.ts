@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export const usePageCard = () => {
   const [loading, setLoading] = useState(false);
+  const [confirm, setConfirm] = useState(false);
   const router = useRouter();
   const handleDelete = async (id: string) => {
     setLoading(true);
@@ -16,5 +17,5 @@ export const usePageCard = () => {
       console.log(e);
     }
   };
-  return { loading, handleDelete };
+  return { loading, handleDelete, confirm, setConfirm };
 };
