@@ -9,7 +9,8 @@ export const AddPageModal = ({
   setModal: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const modalRef = useRef(null);
-  const { register, errors, onSubmit, handleSubmit } = useAddPageModal();
+  const { loading, register, errors, onSubmit, handleSubmit } =
+    useAddPageModal();
   useClickOutside(modalRef, () => {
     setModal(false);
   });
@@ -38,10 +39,13 @@ export const AddPageModal = ({
                 },
               })}
               className={`input input-bordered ${errors["domain"] && "input-error"}`}
+              disabled={loading}
             />
           </div>
           <div className="form-control mt-6">
-            <button className="btn btn-primary">Add</button>
+            <button disabled={loading} className="btn btn-primary">
+              Add
+            </button>
           </div>
         </form>
       </div>

@@ -1,4 +1,9 @@
-import { getSinglePageType, loginType, registerType } from "@/types";
+import {
+  createPageType,
+  getSinglePageType,
+  loginType,
+  registerType,
+} from "@/types";
 import axios from "axios";
 const instance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -53,5 +58,15 @@ export const getSinglePage = async (data: getSinglePageType) => {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   });
+  return response;
+};
+
+export const createPage = async (data: createPageType) => {
+  const response = await instance.post("/api/page", data, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+
   return response;
 };
