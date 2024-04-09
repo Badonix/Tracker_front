@@ -44,7 +44,11 @@ export const AddPageModal = ({
           </div>
           <div className="form-control mt-6">
             <button disabled={loading} className="btn btn-primary">
-              Add
+              {loading ? (
+                <span className="loading loading-spinner"></span>
+              ) : (
+                "Add"
+              )}
             </button>
           </div>
         </form>

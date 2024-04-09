@@ -4,3 +4,6 @@ export type getSinglePageType = {
 export type createPageType = {
   domain: string;
 };
+export type deletePageType = {
+  id: string;
+};

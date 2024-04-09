@@ -1,5 +1,6 @@
 import {
   createPageType,
+  deletePageType,
   getSinglePageType,
   loginType,
   registerType,
@@ -67,6 +68,14 @@ export const createPage = async (data: createPageType) => {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   });
+  return response;
+};
 
+export const deletePage = async (id: string) => {
+  const response = await instance.delete(`/api/page/${id}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
   return response;
 };

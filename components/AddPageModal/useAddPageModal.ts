@@ -13,11 +13,9 @@ export const useAddPageModal = () => {
   } = useForm<AddPageType>();
   const [loading, setLoading] = useState(false);
   const onSubmit = async (data: AddPageType) => {
-    console.log(data);
     setLoading(true);
     try {
       const response = await createPage(data);
-      console.log(response);
       setLoading(false);
       router.push("/pages/" + response.data.page._id);
     } catch (e) {
