@@ -1,6 +1,5 @@
 import {
   createPageType,
-  deletePageType,
   getSinglePageType,
   loginType,
   registerType,
@@ -14,10 +13,10 @@ const instance = axios.create({
   },
 });
 instance.interceptors.response.use(
-  function (response) {
+  function(response) {
     return response;
   },
-  function (error) {
+  function(error) {
     if (error.response && error.response.status === 401) {
       window.location.href = "/login";
     }
@@ -73,6 +72,15 @@ export const createPage = async (data: createPageType) => {
 
 export const deletePage = async (id: string) => {
   const response = await instance.delete(`/api/page/${id}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+  return response;
+};
+
+export const getPageTrackings = async (id: string) => {
+  const response = await instance.get(`/api/page/${id}`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },

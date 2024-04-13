@@ -1,5 +1,5 @@
-import { getSinglePage } from "@/services";
-import { PageType } from "@/types";
+import { getPageTrackings, getSinglePage } from "@/services";
+import { PageType, TrackingType } from "@/types";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 export const useGetSinglePage = () => {
@@ -7,6 +7,8 @@ export const useGetSinglePage = () => {
   const [loading, setLoading] = useState(true);
   const [showing, setShowing] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [trackingsData, setTrackingsData] = useState<TrackingType[]>();
+  const [trackingsDataLoading, setTrackingsDataLoading] = useState(false);
   const router = useRouter();
   const { id } = router.query;
   const handleCopy = () => {
@@ -35,26 +37,41 @@ export const useGetSinglePage = () => {
       return key.substring(0, key.length - 35) + asterisks;
     }
   };
-  const fetch = async () => {
+  const fetchPageData = async () => {
     if (id) {
       const response = await getSinglePage({ pageId: String(id) });
       setPageData(response.data.page);
       setLoading(false);
     }
   };
+  const fetchTrackingsData = async () => {
+    setTrackingsDataLoading(true);
+    if (id) {
+      try {
+        const response = await getPageTrackings(String(id));
+        setTrackingsData(response.data.pageTrackings);
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    setTrackingsDataLoading(false);
+  };
 
   useEffect(() => {
-    fetch();
+    fetchPageData();
+    fetchTrackingsData();
   }, [id]);
 
   return {
     handleCopy,
     copied,
+    trackingsDataLoading,
     pageData,
     formatKey,
     loading,
     showing,
     setShowing,
+    trackingsData,
   };
 };
 export default useGetSinglePage;

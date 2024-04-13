@@ -10,13 +10,15 @@ export const singlePage = () => {
     showing,
     handleCopy,
     setShowing,
+    trackingsData,
+    trackingsDataLoading,
   } = useGetSinglePage();
   return (
     <>
       <Navbar />
       <section className="flex justify-center bg-grayish h-screen pt-20 px-4">
         <div className="shadow-lg rounded-lg max-w-5xl bg-background w-full h-2/3 px-3 py-2">
-          {loading ? (
+          {loading || trackingsDataLoading ? (
             <span className="loading loading-dots loading-lg"></span>
           ) : (
             <>
@@ -46,7 +48,30 @@ export const singlePage = () => {
                   </div>
                 </div>
               </div>
-              <h2 className="mt-2">No data for now</h2>
+              <section className="mt-4">
+                <div className="overflow-x-auto">
+                  <table className="table">
+                    <thead>
+                      <tr>
+                        <th>N</th>
+                        <th>IP</th>
+                        <th>Time</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {trackingsData?.map((el, index) => {
+                        return (
+                          <tr key={el._id}>
+                            <th>{index + 1}</th>
+                            <th>{el.ip_address}</th>
+                            <th>{el.createdAt}</th>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
             </>
           )}
         </div>
