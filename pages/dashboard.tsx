@@ -1,10 +1,8 @@
 import { AddPageModal, PageSkeleton, Navbar, PageCard } from "@/components";
 import { useDashboard } from "@/hooks";
-import useGetUser from "@/hooks/useGetUser";
 import { PageType } from "@/types";
 
 export const dashboard = () => {
-  const { user } = useGetUser();
   const { addModal, setAddModal, pages, pagesLoading } = useDashboard();
   return (
     <>

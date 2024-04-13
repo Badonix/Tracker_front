@@ -46,7 +46,7 @@ export const singlePage = () => {
                   </div>
                 </div>
               </div>
-              <h2>No data for now</h2>
+              <h2 className="mt-2">No data for now</h2>
             </>
           )}
         </div>
