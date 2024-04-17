@@ -9,8 +9,7 @@ export const usePageCard = () => {
   const handleDelete = async (id: string) => {
     setLoading(true);
     try {
-      const response = await deletePage(id);
-      console.log(response);
+      await deletePage(id);
       setLoading(false);
       router.reload();
     } catch (e) {
