@@ -21,7 +21,7 @@ export const useLoginForm = () => {
       localStorage.setItem("token", response?.data?.token);
       router.push("/dashboard");
     } catch (e: any) {
-      e?.response?.status == 401
+      e?.response?.status == 403
         ? setError("password", { type: "wrong", message: "Wrong Credentials" })
         : setError("password", {
             type: "unknown",
