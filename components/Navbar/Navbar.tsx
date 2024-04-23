@@ -36,7 +36,7 @@ export const Navbar = () => {
               <Link href="/docs">Docs</Link>
             </li>
             <li>
-              <Link href="#">Contact</Link>
+              <Link href="/contact">Contact</Link>
             </li>
           </ul>
         </div>
@@ -55,7 +55,7 @@ export const Navbar = () => {
             <Link href="/docs">Docs</Link>
           </li>
           <li>
-            <Link href="#">Contact</Link>
+            <Link href="/contact">Contact</Link>
           </li>
         </ul>
       </div>
