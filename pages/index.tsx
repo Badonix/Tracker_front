@@ -1,5 +1,6 @@
 import { Navbar } from "@/components";
 import Head from "next/head";
+import Link from "next/link";
 export default function Home() {
   return (
     <>
@@ -17,7 +18,9 @@ export default function Home() {
                 your website. The main feature of Tracker is its simplicity and
                 it's cute dashboard
               </p>
-              <button className="btn btn-primary">Get Started</button>
+              <Link href="/dashboard" className="btn btn-primary">
+                Get Started
+              </Link>
             </div>
           </div>
         </div>
