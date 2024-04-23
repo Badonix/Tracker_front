@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { LoginInputs } from "./types";
 import { login } from "@/services";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 export const useLoginForm = () => {
@@ -32,6 +32,9 @@ export const useLoginForm = () => {
     }
     setIsLoading(false);
   };
+  useEffect(() => {
+    localStorage.getItem("token") && router.push("/dashboard");
+  }, []);
 
   return { register, handleSubmit, onSubmit, errors, isLoading };
 };

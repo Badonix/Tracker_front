@@ -2,7 +2,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { RegisterInputs } from "./types";
 import { signup } from "@/services";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useWatch } from "react-hook-form";
 
 export const useRegisterForm = () => {
@@ -42,7 +42,9 @@ export const useRegisterForm = () => {
     }
     setIsLoading(false);
   };
-
+  useEffect(() => {
+    localStorage.getItem("token") && router.push("/dashboard");
+  }, []);
   return {
     register,
     handleSubmit,

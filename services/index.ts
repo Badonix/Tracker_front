@@ -19,6 +19,7 @@ instance.interceptors.response.use(
   function (error) {
     if (error.response && error.response.status === 401) {
       window.location.href = "/login";
+      localStorage.clear();
     }
     return Promise.reject(error);
   },
