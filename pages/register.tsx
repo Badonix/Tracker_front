@@ -8,7 +8,7 @@ export const register = () => {
         <title>Register</title>
       </Head>
       <Navbar />
-      <div className="hero min-h-screen w-full bg-base-200">
+      <div className="flex justify-center min-h-screen pt-20 px-4 pb-5">
         <div className="hero-content w-full flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
             <h1 className="text-5xl font-bold">Register now!</h1>

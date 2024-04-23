@@ -9,7 +9,7 @@ export const about = () => {
           <div className="mockup-browser-toolbar">
             <div className="input">https://tracker.netlify.app</div>
           </div>
-          <div className="flex flex-col items-center justify-center px-4 py-16 bg-base-200">
+          <div className="flex text-center flex-col items-center justify-center px-4 py-16 bg-base-200">
             <h2>Hey!</h2>
             <p>I'm Nick</p>
             <p className="mt-4">
