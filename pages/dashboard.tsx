@@ -1,11 +1,15 @@
 import { AddPageModal, PageSkeleton, Navbar, PageCard } from "@/components";
 import { useDashboard } from "@/hooks";
 import { PageType } from "@/types";
+import Head from "next/head";
 
 export const dashboard = () => {
   const { addModal, setAddModal, pages, pagesLoading } = useDashboard();
   return (
     <>
+      <Head>
+        <title>Dashboard</title>
+      </Head>
       <Navbar />
       <div className="py-24 px-8 min-h-screen w-full bg-base-200">
         {addModal && <AddPageModal setModal={setAddModal} />}

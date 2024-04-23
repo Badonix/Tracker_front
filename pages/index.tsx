@@ -1,7 +1,11 @@
 import { Navbar } from "@/components";
+import Head from "next/head";
 export default function Home() {
   return (
     <>
+      <Head>
+        <title>Tracker</title>
+      </Head>
       <Navbar />
       <section className="bg-grayish h-screen pt-15">
         <div className="hero h-full bg-base-200">

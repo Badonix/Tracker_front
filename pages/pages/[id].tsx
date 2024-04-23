@@ -1,5 +1,7 @@
 import { Navbar } from "@/components";
+import { formatDate } from "@/helpers";
 import { useGetSinglePage } from "@/hooks";
+import Head from "next/head";
 
 export const singlePage = () => {
   const {
@@ -15,6 +17,9 @@ export const singlePage = () => {
   } = useGetSinglePage();
   return (
     <>
+      <Head>
+        <title>{pageData?.domain || "Single Page"}</title>
+      </Head>
       <Navbar />
       <section className="flex justify-center bg-grayish h-screen pt-20 px-4 pb-5">
         <div className="shadow-lg rounded-lg max-w-5xl bg-background w-full h-full md:h-3/4 px-3 py-2">
@@ -61,128 +66,11 @@ export const singlePage = () => {
                     <tbody className="overflow-y-auto max-h-full">
                       {trackingsData?.map((el, index) => {
                         return (
-                          <>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                            <tr key={el._id}>
-                              <th>{index + 1}</th>
-                              <th>{el.ip_address}</th>
-                              <th>{el.createdAt}</th>
-                            </tr>
-                          </>
+                          <tr key={el._id}>
+                            <th>{index + 1}</th>
+                            <th>{el.ip_address}</th>
+                            <th>{formatDate(el.createdAt)}</th>
+                          </tr>
                         );
                       })}
                     </tbody>

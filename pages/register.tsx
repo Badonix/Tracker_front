@@ -1,8 +1,12 @@
 import { RegisterForm, Navbar } from "@/components";
+import Head from "next/head";
 
 export const register = () => {
   return (
     <>
+      <Head>
+        <title>Register</title>
+      </Head>
       <Navbar />
       <div className="hero min-h-screen w-full bg-base-200">
         <div className="hero-content w-full flex-col lg:flex-row-reverse">
